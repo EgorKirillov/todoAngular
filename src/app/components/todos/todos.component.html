@@ -1,7 +1,11 @@
 <p>todos works!</p>
-<div *ngFor="let todo of todos">
-  {{ todo.id }}
-  {{ todo.title }}
-</div>
-<button (click)="createTodosHandler()">create</button>
-<button (click)="deleteTodosHandler()">delete</button>
+<h1 *ngIf="!!error; else content">{{ error }}</h1>
+
+<ng-template #content>
+  <div *ngFor="let todo of todos">
+    {{ todo.id }}
+    {{ todo.title }}
+  </div>
+  <button (click)="createTodosHandler()">create</button>
+  <button (click)="deleteTodosHandler()">delete</button>
+</ng-template>
