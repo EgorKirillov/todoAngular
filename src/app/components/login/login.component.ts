@@ -10,12 +10,12 @@ export class LoginComponent implements OnInit {
   constructor() {}
 
   loginForm = new FormGroup({
-    // email: new FormControl('init email'),
-    // password: new FormControl(''),
+    email: new FormControl('init email'),
+    password: new FormControl(''),
   })
 
   onSubmit() {
-    // console.warn(this.loginForm.value)
+    console.log(this.loginForm.value)
   }
 
   ngOnInit(): void {
