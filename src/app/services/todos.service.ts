@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
 import { environment } from '../../environments/environment'
+import { BeatyLoggerService } from './beaty-logger.service'
 
 export interface TodoList {
   addedDate: string
@@ -26,7 +27,7 @@ interface TodoResponce<T = {}> {
   providedIn: 'root',
 })
 export class TodosService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private beatyLoggerService: BeatyLoggerService) {}
 
   todos$: BehaviorSubject<TodoList[]> = new BehaviorSubject<TodoList[]>([])
 
@@ -37,15 +38,16 @@ export class TodosService {
     },
   }
 
-  private static errorHandler(err: HttpErrorResponse) {
-    console.log(err.message)
+  private errorHandler(err: HttpErrorResponse) {
+    this.beatyLoggerService.log(err.message, 'error')
+    // console.log(err.message)
     return EMPTY
   }
 
   getTodos() {
     this.http
       .get<TodoList[]>(`${environment.baseURL}/todo-lists`, this.httpOptions)
-      .pipe(catchError(TodosService.errorHandler.bind(this)))
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(todos => {
         this.todos$.next(todos)
       })
@@ -55,7 +57,7 @@ export class TodosService {
     this.http
       .post<TodoResponce<{ item: TodoList }>>(`${environment.baseURL}/todo-lists`, { title }, this.httpOptions)
       .pipe(
-        catchError(TodosService.errorHandler.bind(this)),
+        catchError(this.errorHandler.bind(this)),
         map(res => {
           const newTodo = res.data.item
           const stateTodos = this.todos$.getValue()
@@ -71,7 +73,7 @@ export class TodosService {
     return this.http
       .delete<TodoResponce>(`${environment.baseURL}/todo-lists/${deletedID}`, this.httpOptions)
       .pipe(
-        catchError(TodosService.errorHandler.bind(this)),
+        catchError(this.errorHandler.bind(this)),
         map(() => {
           return this.todos$.getValue().filter(td => td.id !== deletedID)
         })
