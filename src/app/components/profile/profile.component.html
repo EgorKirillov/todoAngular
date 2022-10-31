@@ -1,1 +1,4 @@
 <p>profile works!</p>
+<div>{{ (this.profile$ | async)?.fullName }}</div>
+<!--или-->
+<div *ngIf="this.profile$ | async as profile">{{ profile.fullName }}</div>
