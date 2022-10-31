@@ -2,3 +2,6 @@
 <div *ngFor="let user of users$ | async">
   <span [routerLink]="['/profile', user.id]">{{ user.name }}</span> - {{ user.id }}
 </div>
+<!--<button mat-raised-button color="primary" routerLink="/users" [queryParams]="{ page: 2 }">next</button>-->
+<button mat-raised-button color="primary" routerLink="/users" (click)="nextUsersPageHandler()">next</button>
+<button mat-raised-button color="warn" routerLink="/users" [queryParams]="{ page: 1 }">go to 1</button>

@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component'
 import { UsersComponent } from './components/users/users.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
+import { MatButtonModule } from '@angular/material/button'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ProfileComponent,
     PageNotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, MatButtonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

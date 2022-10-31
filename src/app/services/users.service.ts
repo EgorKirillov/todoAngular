@@ -31,9 +31,9 @@ export class UsersService {
     },
   }
 
-  getUsers(): Observable<User[]> {
+  getUsers(page: number = 1): Observable<User[]> {
     return this.http
-      .get<UsersResponce>(`${environment.baseNetworkURL}/users`, this.httpOptions)
+      .get<UsersResponce>(`${environment.baseNetworkURL}/users?page=${page}`, this.httpOptions)
       .pipe(map(el => el.items))
   }
 }
