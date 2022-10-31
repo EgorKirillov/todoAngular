@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { TodosComponent } from './components/todos/todos.component'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms'
 import { LoginComponent } from './components/login/login.component'
 import { HomeComponent } from './components/home/home.component'
@@ -12,6 +12,7 @@ import { UsersComponent } from './components/users/users.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { MatButtonModule } from '@angular/material/button'
+import { CredentialsInterceptor } from './interceptors/credentials.interceptor'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button'
     PageNotFoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, MatButtonModule],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

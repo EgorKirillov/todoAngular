@@ -24,16 +24,7 @@ export interface UsersResponce {
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  private httpOptions = {
-    withCredentials: true,
-    headers: {
-      'API-KEY': environment.apiKey,
-    },
-  }
-
   getUsers(page: number = 1): Observable<User[]> {
-    return this.http
-      .get<UsersResponce>(`${environment.baseNetworkURL}/users?page=${page}`, this.httpOptions)
-      .pipe(map(el => el.items))
+    return this.http.get<UsersResponce>(`${environment.baseNetworkURL}/users?page=${page}`).pipe(map(el => el.items))
   }
 }

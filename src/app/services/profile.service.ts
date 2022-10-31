@@ -30,14 +30,7 @@ export interface Profile {
 export class ProfileService {
   constructor(private http: HttpClient) {}
 
-  private httpOptions = {
-    withCredentials: true,
-    headers: {
-      'API-KEY': environment.apiKey,
-    },
-  }
-
   getprofile(id: string): Observable<Profile> {
-    return this.http.get<Profile>(`${environment.baseNetworkURL}/profile/${id}`, this.httpOptions)
+    return this.http.get<Profile>(`${environment.baseNetworkURL}/profile/${id}`)
   }
 }

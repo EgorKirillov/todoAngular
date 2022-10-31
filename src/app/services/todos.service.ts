@@ -31,13 +31,6 @@ export class TodosService {
 
   todos$: BehaviorSubject<TodoList[]> = new BehaviorSubject<TodoList[]>([])
 
-  httpOptions = {
-    withCredentials: true,
-    headers: {
-      'API-KEY': environment.apiKey,
-    },
-  }
-
   private errorHandler(err: HttpErrorResponse) {
     this.beatyLoggerService.log(err.message, 'error')
     // console.log(err.message)
@@ -46,7 +39,7 @@ export class TodosService {
 
   getTodos() {
     this.http
-      .get<TodoList[]>(`${environment.baseURL}/todo-lists`, this.httpOptions)
+      .get<TodoList[]>(`${environment.baseURL}/todo-lists`)
       .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(todos => {
         this.todos$.next(todos)
@@ -55,7 +48,7 @@ export class TodosService {
 
   createTodos(title: string) {
     this.http
-      .post<TodoResponce<{ item: TodoList }>>(`${environment.baseURL}/todo-lists`, { title }, this.httpOptions)
+      .post<TodoResponce<{ item: TodoList }>>(`${environment.baseURL}/todo-lists`, { title })
       .pipe(
         catchError(this.errorHandler.bind(this)),
         map(res => {
@@ -71,7 +64,7 @@ export class TodosService {
 
   deleteTodos(deletedID: string) {
     return this.http
-      .delete<TodoResponce>(`${environment.baseURL}/todo-lists/${deletedID}`, this.httpOptions)
+      .delete<TodoResponce>(`${environment.baseURL}/todo-lists/${deletedID}`)
       .pipe(
         catchError(this.errorHandler.bind(this)),
         map(() => {
