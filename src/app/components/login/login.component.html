@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="email">Email: </label>
-    <input id="email" type="text" formControlName="email" placeholder="enter email" />
+    <input id="email" type="text" formControlName="email" placeholder="enter email" class="form-control" />
     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
       <div *ngIf="email.errors?.['required']">Name is required.</div>
       <div *ngIf="email.errors?.['email']">Name must be email.</div>
@@ -18,5 +18,15 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="loginForm.invalid">submit</button>
+  <button
+    type="submit"
+    [disabled]="loginForm.invalid"
+    [ngClass]="{
+      buttonError: loginForm.invalid,
+      buttonSuccess: loginForm.valid,
+      buttonUntouched: loginForm.untouched
+    }"
+  >
+    submit
+  </button>
 </form>
