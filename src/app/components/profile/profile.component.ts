@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Profile, ProfileService } from '../../services/profile.service'
 import { Observable } from 'rxjs'
 
@@ -9,9 +9,13 @@ import { Observable } from 'rxjs'
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private profileService: ProfileService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {}
 
   profile$!: Observable<Profile>
+
+  navigateToUsers() {
+    this.router.navigate(['/users'])
+  }
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('userId')

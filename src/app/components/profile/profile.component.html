@@ -2,3 +2,6 @@
 <div>{{ (this.profile$ | async)?.fullName }}</div>
 <!--или-->
 <div *ngIf="this.profile$ | async as profile">{{ profile.fullName }}</div>
+
+<button routerLink="/users">to users</button>
+<button (click)="this.navigateToUsers()">to users</button>
