@@ -1,10 +1,5 @@
 <!--<tdl-todos></tdl-todos>-->
 <!--<tdl-login></tdl-login>-->
-<span>
-  <a routerLink="/" class="button" routerLinkActive="activebutton" [routerLinkActiveOptions]="{ exact: true }">home</a>
-  <a routerLink="/login" class="button" routerLinkActive="activebutton"> login </a>
-  <a routerLink="/todos" class="button" routerLinkActive="activebutton"> todos </a>
-  <a routerLink="/users" class="button" routerLinkActive="activebutton"> users </a>
-  <a routerLink="/profile" class="button" routerLinkActive="activebutton"> profile </a>
-</span>
+
+<tdl-navigation></tdl-navigation>
 <router-outlet></router-outlet>
