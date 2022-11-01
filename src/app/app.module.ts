@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { TodosComponent } from '../todos/components/todos/todos.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
-import { HomeComponent } from '../home/components/home/home.component'
 import { UsersComponent } from '../users/components/users/users.component'
 import { MatButtonModule } from '@angular/material/button'
 import { CredentialsInterceptor } from '../core/interceptors/credentials.interceptor'
@@ -13,9 +12,10 @@ import { SharedModule } from '../shared/shared.module'
 import { AuthModule } from '../auth/auth.module'
 import { ProfileModule } from '../profile/profile.module'
 import { PageNotFoundModule } from '../page-not-found/page-not-found.module'
+import { HomeModule } from '../home/home.module'
 
 @NgModule({
-  declarations: [AppComponent, TodosComponent, HomeComponent, UsersComponent],
+  declarations: [AppComponent, TodosComponent, UsersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +25,7 @@ import { PageNotFoundModule } from '../page-not-found/page-not-found.module'
     AuthModule,
     ProfileModule,
     PageNotFoundModule,
+    HomeModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true }],
   bootstrap: [AppComponent],
