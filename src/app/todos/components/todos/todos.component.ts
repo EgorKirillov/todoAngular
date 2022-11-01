@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { TodosService } from '../../services/todos.service'
 import { Observable } from 'rxjs'
-import { TodoList } from 'src/todos/models/todos.models'
+import { TodoList } from 'src/app/todos/models/todos.models'
 
 @Component({
   selector: 'tdl-todos',
