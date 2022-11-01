@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Profile, ProfileService } from '../../services/profile.service'
+import { ProfileService } from '../../services/profile.service'
 import { Observable } from 'rxjs'
+import { Profile } from '../../models/profile.model'
 
 @Component({
   selector: 'tdl-profile',

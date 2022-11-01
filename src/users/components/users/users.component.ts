@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { User, UsersService } from '../../seervices/users.service'
+import { UsersService } from '../../seervices/users.service'
 import { Observable } from 'rxjs'
 import { ActivatedRoute, Router } from '@angular/router'
+import { User } from '../../models/users.model'
 
 @Component({
   selector: 'tdl-users',

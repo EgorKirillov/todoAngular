@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { TodoList, TodosService } from '../../services/todos.service'
+import { TodosService } from '../../services/todos.service'
 import { Observable } from 'rxjs'
+import { TodoList } from 'src/todos/models/todos.models'
 
 @Component({
   selector: 'tdl-todos',
@@ -21,7 +22,7 @@ export class TodosComponent implements OnInit {
 
   deleteTodosHandler() {
     console.log('delete TODO by ID')
-    const deletedID = 'ecc31dd7-cd52-4c34-bdb2-f6b0034353b5'
+    const deletedID = '18977380-8d07-4fff-8d24-de6ca3e91022'
     this.todosService.deleteTodos(deletedID)
   }
 

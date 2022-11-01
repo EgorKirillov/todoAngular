@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
-
-type SeverityType = 'error' | 'success' | 'info'
+import { SeverityType } from '../models/core.models'
 
 @Injectable({
   providedIn: 'root',

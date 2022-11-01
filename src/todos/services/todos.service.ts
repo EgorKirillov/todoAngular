@@ -3,25 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
 import { environment } from '../../environments/environment'
 import { BeatyLoggerService } from '../../core/services/beaty-logger.service'
-
-export interface TodoList {
-  addedDate: string
-  id: string
-  order: number
-  title: string
-}
-
-interface FieldError {
-  field: string
-  error: string
-}
-
-interface TodoResponce<T = {}> {
-  resultCode: number
-  messages: Array<string>
-  fieldsErrors?: Array<FieldError>
-  data: T
-}
+import { TodoList, TodoResponce } from '../models/todos.models'
 
 @Injectable({
   providedIn: 'root',

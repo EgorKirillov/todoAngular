@@ -1,22 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../environments/environment'
-
-interface AuthMeResponce {
-  resultCode: ResultCode
-  messages: string[]
-  fieldErrors: string[]
-  data: {
-    id: number
-    email: string
-    login: string
-  }
-}
-
-enum ResultCode {
-  success,
-  error,
-}
+import { AuthMeResponce, ResultCode } from '../models/core.models'
 
 @Injectable({
   providedIn: 'root',
