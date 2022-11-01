@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { AuthMeResponce, ResultCode } from '../models/core.models'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
 

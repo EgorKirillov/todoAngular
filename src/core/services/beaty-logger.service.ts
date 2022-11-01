@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core'
 import { SeverityType } from '../models/core.models'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class BeatyLoggerService {
   constructor() {}
 
