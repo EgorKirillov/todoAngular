@@ -9,9 +9,11 @@ import { TodoList } from 'src/app/todos/models/todos.models'
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
-  constructor(private todosService: TodosService) {}
+  constructor(private todosService: TodosService) {
+    this.todos$ = this.todosService.todos$
+  }
 
-  todos$!: Observable<TodoList[]>
+  todos$: Observable<TodoList[]>
   error = ''
 
   createTodosHandler() {
@@ -32,7 +34,7 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('start todos')
-    this.todos$ = this.todosService.todos$
+    // this.todos$ = this.todosService.todos$
     this.getTodos()
   }
 }

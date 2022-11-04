@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router'
-import { Observable } from 'rxjs'
+import { catchError, map, Observable, of } from 'rxjs'
 import { AuthService } from '../services/auth.service'
+import { ResultCode } from '../models/core.models'
+import { HttpErrorResponse } from '@angular/common/http'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,11 +13,19 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isAuth = this.authService.isAuth
-    if (!isAuth) {
-      this.router.navigate(['/login'], { queryParams: { isAuth: false } })
-    }
-    console.log('guard is work')
-    return this.authService.isAuth
+    const urlNav = this.router.createUrlTree(['/login'], { queryParams: { isAuth: false } })
+    return this.authService.authMe().pipe(
+      map(res => {
+        if (res.resultCode === ResultCode.success) {
+          return true
+        } else {
+          return urlNav
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err.message)
+        return of(urlNav)
+      })
+    )
   }
 }

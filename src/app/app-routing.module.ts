@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   {
-    path: 'profile/:userId',
+    path: 'profile',
     // canActivate: [AuthGuard],
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
   },
@@ -23,7 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
   },
 ]
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],

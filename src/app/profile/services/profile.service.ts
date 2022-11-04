@@ -5,7 +5,7 @@ import { Observable } from 'rxjs'
 import { Profile } from '../models/profile.model'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: null,
 })
 export class ProfileService {
   constructor(private http: HttpClient) {}
