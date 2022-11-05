@@ -3,9 +3,7 @@
 
 <ng-template #content>
   <div *ngFor="let todo of todos$ | async">
-    {{ todo.id }}
-    {{ todo.title }}
+    <tdl-todo [todo]="todo"></tdl-todo>
   </div>
   <button (click)="createTodosHandler()">create</button>
-  <button (click)="deleteTodosHandler()">delete</button>
 </ng-template>

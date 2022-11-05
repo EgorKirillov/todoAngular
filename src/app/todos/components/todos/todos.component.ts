@@ -22,19 +22,12 @@ export class TodosComponent implements OnInit {
     this.todosService.createTodos(title)
   }
 
-  deleteTodosHandler() {
-    console.log('delete TODO by ID')
-    const deletedID = '18977380-8d07-4fff-8d24-de6ca3e91022'
-    this.todosService.deleteTodos(deletedID)
-  }
-
   getTodos() {
     this.todosService.getTodos()
   }
 
   ngOnInit(): void {
     console.log('start todos')
-    // this.todos$ = this.todosService.todos$
     this.getTodos()
   }
 }

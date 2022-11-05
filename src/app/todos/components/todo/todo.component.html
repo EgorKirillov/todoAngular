@@ -1,0 +1,3 @@
+<span>ID = {{ todo.id }} </span>
+<tdl-editable-name [name]="todo.title" (changeName)="getNewTitle($event)"></tdl-editable-name>
+<button (click)="deleteTodo()">del</button>

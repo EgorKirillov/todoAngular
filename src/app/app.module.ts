@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module'
 import { PageNotFoundModule } from './page-not-found/page-not-found.module'
 import { HomeModule } from './home/home.module'
 import { CoreModule } from './core/core.module'
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { CoreModule } from './core/core.module'
     HomeModule,
     PageNotFoundModule,
     CoreModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

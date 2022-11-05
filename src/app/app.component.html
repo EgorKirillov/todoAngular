@@ -1,5 +1,11 @@
-<!--<tdl-todos></tdl-todos>-->
-<!--<tdl-login></tdl-login>-->
+<div *ngIf="isLoading$ | async; then thenBlock; else elseBlock"></div>
+
+<ng-template #thenBlock>
+  <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+</ng-template>
+<ng-template #elseBlock>
+  <mat-progress-bar mode="determinate" color="primary"></mat-progress-bar>
+</ng-template>
 
 <tdl-navigation></tdl-navigation>
 <tdl-header></tdl-header>

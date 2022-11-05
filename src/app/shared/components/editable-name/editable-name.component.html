@@ -1,0 +1,15 @@
+<span *ngIf="editMode; then thenBlock; else elseBlock"></span>
+
+<ng-template #thenBlock>
+  <input
+    autofocus
+    type="text"
+    (keyup.enter)="deActivateEditMod()"
+    (focusout)="deActivateEditMod()"
+    [(ngModel)]="newName"
+  />
+</ng-template>
+
+<ng-template #elseBlock>
+  <span (dblclick)="activateEditMod()">{{ name }}</span>
+</ng-template>

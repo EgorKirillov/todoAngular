@@ -15,7 +15,6 @@ export class TodosService {
 
   private errorHandler(err: HttpErrorResponse) {
     this.beatyLoggerService.log(err.message, 'error')
-    // console.log(err.message)
     return EMPTY
   }
 
@@ -51,6 +50,20 @@ export class TodosService {
         catchError(this.errorHandler.bind(this)),
         map(() => {
           return this.todos$.getValue().filter(td => td.id !== deletedID)
+        })
+      )
+      .subscribe(todos => {
+        this.todos$.next(todos)
+      })
+  }
+
+  updateTodosTitle(todoId: string, title: string) {
+    return this.http
+      .put<TodoResponce>(`${environment.baseURL}/todo-lists/${todoId}`, { title })
+      .pipe(
+        catchError(this.errorHandler.bind(this)),
+        map(() => {
+          return this.todos$.getValue().map(td => (td.id === todoId ? { ...td, title: title } : td))
         })
       )
       .subscribe(todos => {

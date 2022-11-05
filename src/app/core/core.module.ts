@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { CredentialsInterceptor } from './interceptors/credentials.interceptor'
 import { AuthGuard } from './guards/auth.guard'
+import { LoaderService } from './services/loader.service'
 
 @NgModule({
   declarations: [],
@@ -12,6 +13,7 @@ import { AuthGuard } from './guards/auth.guard'
   providers: [
     BeatyLoggerService,
     AuthService,
+    LoaderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CredentialsInterceptor,
