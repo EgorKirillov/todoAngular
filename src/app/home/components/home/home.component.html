@@ -1,2 +1,31 @@
 <p>home works!</p>
-<tdl-editable-name name="sdfsdfsdfsf"></tdl-editable-name>
+
+<!--<ng-template #content>-->
+<div class="todos">
+  <div class="todo" *ngFor="let todo of todos">
+    <span class="title">
+      <tdl-editable-name [name]="todo.title" (changeName)="getNewTitle($event)"></tdl-editable-name>
+      <button class="buttonDel">X</button>
+    </span>
+
+    <div class="taskContainer">
+      <div class="task">
+        <tdl-editable-name name="task" (changeName)="getNewTitle($event)"></tdl-editable-name>
+      </div>
+      <div class="task">
+        <tdl-editable-name name="task" (changeName)="getNewTitle($event)"></tdl-editable-name>
+      </div>
+      <div class="task">
+        <tdl-editable-name name="tasgfdsfgdfghdfghdfghk" (changeName)="getNewTitle($event)"></tdl-editable-name>
+      </div>
+      <div class="task">
+        <tdl-editable-name name="task" (changeName)="getNewTitle($event)"></tdl-editable-name>
+      </div>
+      <div class="task">
+        <tdl-editable-name name="task" (changeName)="getNewTitle($event)"></tdl-editable-name>
+      </div>
+    </div>
+  </div>
+</div>
+<button>create</button>
+<!--</ng-template>-->

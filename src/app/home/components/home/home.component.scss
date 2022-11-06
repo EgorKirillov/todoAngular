@@ -1,0 +1,45 @@
+.todos{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: flex-start;
+
+}
+.todo{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border: solid 2px rgba(0, 0, 0, 0.29);
+  margin: 10px 10px 10px 0;
+  padding: 15px;
+  background-color: #c6d7ea;
+}
+.title{
+  margin-left: 10px;
+  font-size: 24px;
+font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+}
+.buttonDel{
+  margin-left: 10px;
+  font-size: 9px;
+  padding: 5px;
+}
+.taskContainer {
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  background-color: #afcbe6;
+  margin-top: 20px;
+}
+.task{
+  margin-top: 5px;
+}
+
+.date{}
