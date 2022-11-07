@@ -17,8 +17,10 @@ export class AddItemComponent implements OnInit {
 
   addItemHandler() {
     const value = this.item.value?.trim()
-    this.addItem.emit(value)
-    this.item.setValue('')
+    if (value) {
+      this.addItem.emit(value)
+      this.item.setValue('')
+    }
   }
 
   ngOnInit(): void {}

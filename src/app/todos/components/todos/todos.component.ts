@@ -16,9 +16,8 @@ export class TodosComponent implements OnInit {
   todos$: Observable<TodoList[]>
   error = ''
 
-  createTodosHandler() {
-    console.log('create TODO with title')
-    const title = `NG${Math.floor(Math.random() * 100)}`
+  createTodosHandler(title: string) {
+    console.log('create TODO with title: ' + title)
     this.todosService.createTodos(title)
   }
 
