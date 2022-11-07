@@ -1,6 +1,5 @@
 <div class="taskContainer">
-  <button (click)="createNewTask('ffff')">create new</button>
-
+  <tdl-add-item placeholder="add task name" (addItem)="createNewTask($event)"></tdl-add-item>
   <div class="task" *ngFor="let task of tasksById$ | async">
     <tdl-editable-name [name]="task.title" (changeName)="changeTaskTitle($event, task.id)"></tdl-editable-name>
     {{ task.completed }}
