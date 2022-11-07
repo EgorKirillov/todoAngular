@@ -17,8 +17,16 @@ export class TodosComponent implements OnInit {
   error = ''
 
   createTodosHandler(title: string) {
-    console.log('create TODO with title: ' + title)
-    this.todosService.createTodos(title)
+    if (this.todosService.getTodosLength() < 10) {
+      console.log(this.todosService.getTodosLength())
+      console.log('create TODO with title: ' + title)
+      this.todosService.createTodos(title)
+    } else {
+      this.error = 'too many Todos'
+      setTimeout(() => {
+        this.error = ''
+      }, 1000)
+    }
   }
 
   getTodos() {

@@ -18,6 +18,10 @@ export class TodosService {
     return EMPTY
   }
 
+  getTodosLength() {
+    return this.todos$.getValue().length
+  }
+
   getTodos() {
     this.http
       .get<TodoList[]>(`${environment.baseURL}/todo-lists`)
