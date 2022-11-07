@@ -2,3 +2,4 @@
   <tdl-editable-name [name]="todo.title" (changeName)="getNewTitle($event)"></tdl-editable-name>
   <button class="buttonDel" (click)="deleteTodo()">x</button>
 </div>
+<tdl-tasks [todoId]="todo.id"></tdl-tasks>
