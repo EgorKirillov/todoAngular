@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
       Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,5}$'),
     ]),
     password: new FormControl('', [Validators.minLength(4), Validators.required]),
+    rememberMe: new FormControl(null),
   })
 
   get email() {
