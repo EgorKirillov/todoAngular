@@ -1,5 +1,16 @@
 import { ResultCode } from './core.models'
 
+export interface AuthMeResponce {
+  resultCode: ResultCode
+  messages: string[]
+  fieldErrors: string[]
+  data: {
+    id: number
+    email: string
+    login: string
+  }
+}
+
 export interface Login {
   email: string
   password: string

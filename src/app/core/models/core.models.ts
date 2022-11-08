@@ -1,17 +1,7 @@
-export interface AuthMeResponce {
-  resultCode: ResultCode
-  messages: string[]
-  fieldErrors: string[]
-  data: {
-    id: number
-    email: string
-    login: string
-  }
-}
-
 export enum ResultCode {
-  success,
-  error,
+  success = 0,
+  error = 1,
+  captcha = 10,
 }
 
 export type SeverityType = 'error' | 'success' | 'info'
