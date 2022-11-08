@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../../../core/services/auth.service'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'tdl-header',
@@ -7,9 +8,11 @@ import { AuthService } from '../../../core/services/auth.service'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.isAuth$ = this.authService.isAuth$
+  }
 
-  isAuth = this.authService.isAuth
+  isAuth$: Observable<boolean>
 
   logoutHandler() {
     console.log('logout')

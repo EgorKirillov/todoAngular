@@ -1,2 +1,5 @@
-<p>Todolists with ANGULAR bla-bla-bla</p>
-<button (click)="logoutHandler()">logout</button>
+<div class="container">
+  <p>Todolists with ANGULAR bla-bla-bla</p>
+  <button *ngIf="isAuth$ | async" class="logout" (click)="logoutHandler()">logout</button>
+  <!--  <button *ngIf="isAuth$| async" class="disableButton" disabled>logout</button>-->
+</div>
