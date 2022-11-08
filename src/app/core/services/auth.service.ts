@@ -4,10 +4,11 @@ import { environment } from '../../../environments/environment'
 import { ResultCode } from '../models/core.models'
 import { catchError, EMPTY, tap } from 'rxjs'
 import { AuthMeResponce, Login, LoginResponce } from '../models/login.models'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isAuth = false
   needCaptcha: boolean = false
@@ -22,31 +23,45 @@ export class AuthService {
   }
 
   login(loginData: Login) {
-    return this.http.post<LoginResponce>(`${environment.baseURL}/auth/login`, loginData).pipe(
-      catchError(err => {
-        this.error = err.message
-        return EMPTY
-      }),
-      tap(res => {
-        this.needCaptcha = res.resultCode === ResultCode.captcha
-        if (res.resultCode === ResultCode.error) {
-          this.error = res.messages[0]
+    return this.http
+      .post<LoginResponce>(`${environment.baseURL}/auth/login`, loginData)
+      .pipe(
+        catchError(err => {
+          this.error = err.message
+          return EMPTY
+        }),
+        tap(res => {
+          this.needCaptcha = res.resultCode === ResultCode.captcha
+          if (res.resultCode === ResultCode.error) {
+            this.error = res.messages[0]
+          }
+        })
+      )
+      .subscribe(res => {
+        if (res.resultCode === ResultCode.success) {
+          this.router.navigate(['/todos'])
         }
       })
-    )
   }
 
   logout() {
-    return this.http.delete<LoginResponce>(`${environment.baseURL}/auth/login`).pipe(
-      catchError(err => {
-        this.error = err.message
-        return EMPTY
-      }),
-      tap(res => {
-        if (res.resultCode !== ResultCode.success) {
-          this.error = res.messages[0]
+    this.http
+      .delete<LoginResponce>(`${environment.baseURL}/auth/login`)
+      .pipe(
+        catchError(err => {
+          this.error = err.message
+          return EMPTY
+        }),
+        tap(res => {
+          if (res.resultCode !== ResultCode.success) {
+            this.error = res.messages[0]
+          }
+        })
+      )
+      .subscribe(res => {
+        if (res.resultCode === ResultCode.success) {
+          this.router.navigate(['/login'])
         }
       })
-    )
   }
 }
