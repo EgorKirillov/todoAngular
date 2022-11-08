@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import { AuthService } from '../../../core/services/auth.service'
 
 @Component({
   selector: 'tdl-login',
@@ -7,7 +8,7 @@ import { FormControl, UntypedFormGroup, Validators } from '@angular/forms'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   loginForm = new UntypedFormGroup({
     email: new FormControl('', [
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.loginForm.value)
+    this.authService.login(this.loginForm.value)
   }
 
   ngOnInit(): void {
