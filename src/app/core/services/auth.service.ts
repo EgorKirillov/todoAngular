@@ -10,16 +10,14 @@ import { Router } from '@angular/router'
 export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  isAuth = false
+  isAuth$ = new BehaviorSubject<boolean>(false)
   needCaptcha: boolean = false
-  error$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([])
-
-  // error: string = ''
+  error$ = new BehaviorSubject<string[]>([])
 
   authMe() {
     return this.http.get<AuthMeResponce>(`${environment.baseURL}/auth/me`).pipe(
       tap(res => {
-        this.isAuth = res.resultCode === ResultCode.success
+        this.isAuth$.next(res.resultCode === ResultCode.success)
       })
     )
   }
@@ -37,6 +35,7 @@ export class AuthService {
           if (res.resultCode === ResultCode.error) {
             this.error$.next(res.messages)
           }
+          this.isAuth$.next(res.resultCode === ResultCode.success)
         })
       )
       .subscribe(res => {
@@ -58,6 +57,7 @@ export class AuthService {
           if (res.resultCode !== ResultCode.success) {
             this.error$.next(res.messages)
           }
+          this.isAuth$.next(res.resultCode !== ResultCode.success)
         })
       )
       .subscribe(res => {
