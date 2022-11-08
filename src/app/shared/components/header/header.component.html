@@ -1,5 +1,8 @@
 <div class="container">
   <p>Todolists with ANGULAR bla-bla-bla</p>
-  <button *ngIf="isAuth$ | async" class="logout" (click)="logoutHandler()">logout</button>
-  <!--  <button *ngIf="isAuth$| async" class="disableButton" disabled>logout</button>-->
+
+  <button *ngIf="isAuth$ | async; else content" class="logout" (click)="logoutHandler()">logout</button>
+  <ng-template #content>
+    <button class="disableButton" disabled>logout</button>
+  </ng-template>
 </div>
