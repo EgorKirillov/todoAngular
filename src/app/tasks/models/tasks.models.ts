@@ -40,7 +40,7 @@ export enum TaskPriorities {
   Later,
 }
 
-export type UpdateTaskModelType = {
+export interface UpdateTaskModel {
   title: string
   description: string
   status: TaskStatuses

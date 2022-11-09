@@ -1,10 +1,6 @@
 <div class="taskContainer">
   <tdl-add-item placeholder="add task name" (addItem)="createNewTask($event)"></tdl-add-item>
   <div class="task" *ngFor="let task of tasksById$ | async">
-    <tdl-editable-name [name]="task.title" (changeName)="changeTaskTitle($event, task.id)"></tdl-editable-name>
-    {{ task.completed }}
-    {{ task.order }}
-    status:{{ task.status }}
-    <button (click)="deleteTask(task.id)">x</button>
+    <tdl-task [task]="task"></tdl-task>
   </div>
 </div>

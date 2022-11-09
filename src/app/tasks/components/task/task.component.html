@@ -1,0 +1,5 @@
+<input type="checkbox" [checked]="taskComplited" (click)="changeTaskStatus()" />
+<tdl-editable-name [name]="task.title" (changeName)="changeTaskTitle($event)"></tdl-editable-name>
+{{ task.completed }}
+{{ task.order }}
+<button (click)="deleteTask()">x</button>

@@ -3,7 +3,7 @@ import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { BeatyLoggerService } from '../../core/services/beaty-logger.service'
 import { environment } from '../../../environments/environment'
-import { GetTasksResponce, Task, TasksResponce } from '../models/tasks.models'
+import { GetTasksResponce, Task, TasksResponce, TaskStatuses, UpdateTaskModel } from '../models/tasks.models'
 
 @Injectable()
 export class TasksService {
@@ -61,9 +61,19 @@ export class TasksService {
   }
 
   updateTaskTitle(todoId: string, taskId: string, title: string) {
+    const oldTask = this.tasks$.getValue()[todoId].find(task => task.id === taskId)
+    const newTask = { ...this._createUpdateTaskModel(oldTask, 'title', title) }
+    return this._updateTask(todoId, taskId, newTask)
+  }
+
+  updateTaskStatus(todoId: string, taskId: string, status: TaskStatuses) {
+    const oldTask = this.tasks$.getValue()[todoId].find(task => task.id === taskId)
+    const newTask = { ...this._createUpdateTaskModel(oldTask, 'status', status) }
+    return this._updateTask(todoId, taskId, newTask)
+  }
+
+  _updateTask(todoId: string, taskId: string, newTask: UpdateTaskModel) {
     const stateTasks = this.tasks$.getValue()
-    const oldTask = { ...stateTasks[todoId].find(task => task.id === taskId) }
-    const newTask = { ...oldTask, title }
     return this.http
       .put<TasksResponce>(`${environment.baseURL}/todo-lists/${todoId}/tasks/${taskId}`, newTask)
       .pipe(
@@ -75,5 +85,31 @@ export class TasksService {
       .subscribe(tasks => {
         this.tasks$.next({ ...stateTasks, [todoId]: [...tasks] })
       })
+  }
+
+  _createUpdateTaskModel(task: Task = {} as Task, key: keyof UpdateTaskModel, value: any): UpdateTaskModel {
+    const taskModel: UpdateTaskModel = {
+      title: task.title,
+      status: task.status,
+      deadline: task.deadline,
+      description: task.description,
+      priority: task.priority,
+      startDate: task.startDate,
+      [key]: value,
+    }
+    return taskModel
+  }
+
+  //костыль как заменить
+  createUpdateTaskModel(task: Task = {} as Task): UpdateTaskModel {
+    const taskModel: UpdateTaskModel = {
+      title: task.title && ' ',
+      status: task.status,
+      deadline: task.deadline,
+      description: task.description,
+      priority: task.priority,
+      startDate: task.startDate,
+    }
+    return taskModel
   }
 }
