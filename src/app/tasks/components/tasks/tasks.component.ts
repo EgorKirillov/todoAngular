@@ -14,9 +14,9 @@ export class TasksComponent implements OnInit {
     this.tasksById$ = this.tasksService.tasks$.pipe(map(res => res[this.todoId]))
   }
 
+  //как вытаскивать таски
   tasks$: Observable<{ [key: string]: Task[] }>
   tasksById$: Observable<Task[]>
-  renderTask: Task[] = []
 
   @Input() todoId!: string
 
